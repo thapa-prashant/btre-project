@@ -14,8 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+from api import views
+from rest_framework import routers
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
+admin.site.site_header = 'Btre project'
+router = routers.DefaultRouter()
+router.register('listings',views.ListingView)
+router.register('realtors',views.RealtorView)
 
 urlpatterns = [
+    path('',include('pages.urls')),
     path('admin/', admin.site.urls),
-]
+    path('listings/',include('listings.urls')),
+    path('accounts/',include('accounts.urls')),
+    path('contacts/',include('contacts.urls')),
+    path('api/',include(router.urls)),
+    path('api/token/',TokenObtainPairView.as_view()),
+    path('api/token/refresh/',TokenRefreshView.as_view()),
+    path('api-auth/',include('rest_framework.urls')),
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

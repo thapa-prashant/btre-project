@@ -6,6 +6,9 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/ktmjobs/static" />
+            <path value="file://$PROJECT_DIR$/ktmjobs/photos" />
+            <path value="file://$PROJECT_DIR$/ktmjobs/media" />
+            <path value="file://$PROJECT_DIR$/ktmjobs/ktmjobs/static" />
           </resourceRoots>
         </entryData>
       </entry>
